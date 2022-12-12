@@ -9,6 +9,7 @@ exports.create = (req, res, next) => {
             const path = req.file != undefined ? req.file.path.replace(/\\/g, '/') : '';
 
             const model = {
+
                 productName: req.body.productName,
                 category: req.body.category,
                 productShortDescription: req.body.productShortDescription,
@@ -37,6 +38,7 @@ exports.create = (req, res, next) => {
 
 exports.findAll = (req, res, next) => {
     var model = {
+        productIds: req.query.productIds,
         productName: req.query.productName,
         categoryId: req.query.categoryId,
         pageSize: req.query.pageSize,

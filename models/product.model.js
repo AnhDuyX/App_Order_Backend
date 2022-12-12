@@ -47,6 +47,13 @@ const product = mongoose.model(
             default: "IN",
         },
 
+        relatedProducts: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "RelatedProduct",
+            }
+        ]
+
 
 
     },
