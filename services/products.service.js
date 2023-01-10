@@ -46,7 +46,7 @@ async function getProducts(params, callback) {
     }
 
     if (params.productIds) {
-        condition["_id"] = {
+        condition["productId"] = {
             $in: params.productIds.split(",")
         };
     }

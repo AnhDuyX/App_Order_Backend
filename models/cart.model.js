@@ -10,14 +10,15 @@ const cart = mongoose.model(
         products: [{
             product: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: "Product",
+                ref: "Cart",
                 require: true
             },
             qty: {
                 type: Number,
                 required: true
             }
-        }]
+        }],
+
     },
         {
             toJSON: {

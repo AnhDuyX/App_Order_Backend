@@ -26,6 +26,32 @@ exports.login = (req, res, next) => {
     });
 }
 
+exports.findAll = (req, res, next) => {
+    userServices.getUsers(req, (error, results) => {
+        if (error) {
+            return next(error);
+        } else {
+            return res.status(200).send({
+                message: 'Success',
+                data: results,
+            });
+        }
+    });
+};
+exports.delete = (req, res, next) => {
+
+    userServices.deleteUser(req.query.id, (error, results) => {
+        if (error) {
+            return next(error);
+        } else {
+            return res.status(200).send({
+                message: 'Success',
+                data: results,
+            });
+        }
+    });
+};
+
 exports.userProfile = (req, res, next) => {
-    return res.status(200).json({ message: "NGU" });
+    return res.status(200).json({ message: "data" });
 }

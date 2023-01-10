@@ -2,13 +2,11 @@ const { relatedProduct } = require('../models/related-products.model');
 const { product } = require('../models/product.model');
 
 async function addRelatedProduct(params, callback) {
-    console.log(params.product);
     if (!params.product) {
         return callback({
             message: "No Product Id"
         });
     }
-    console.log(params.relatedProduct);
     if (!params.relatedProduct) {
         return callback({
             message: "No Related Product Id"

@@ -9,6 +9,8 @@ const swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./swagger.json');
 const { findAll } = require('./controllers/products.controller');
 
+console.log(MONGO_DB_CONFIG.DB);
+
 mongoose.Promise = global.Promise;
 mongoose
     .connect(MONGO_DB_CONFIG.DB, {
@@ -23,8 +25,23 @@ mongoose
             console.log('No connect!' + error);
         },
     );
+// const client = new MongoClient(MONGO_DB_CONFIG.DB, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+// client.connect(err => {
+//     const collection = client.db("test").collection("devices");
+//     console.log("cccc")
+//     // perform actions on the collection object
+//     client.close();
+// });
 
-app.use(cors({}));
+// app.use(cors({}));
+app.use(
+    cors({
+        credentials: true,
+        origin: (_, callback) => callback(null, true),
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+        optionsSuccessStatus: 200,
+    }),
+);
 app.use(express.json());
 app.use('/uploads', express.static('uploads'));
 app.use('/api', require('./routes/app.routes'));

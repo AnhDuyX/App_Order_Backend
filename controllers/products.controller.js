@@ -9,7 +9,6 @@ exports.create = (req, res, next) => {
             const path = req.file != undefined ? req.file.path.replace(/\\/g, '/') : '';
 
             const model = {
-
                 productName: req.body.productName,
                 category: req.body.category,
                 productShortDescription: req.body.productShortDescription,
@@ -19,7 +18,7 @@ exports.create = (req, res, next) => {
                 productSKU: req.body.productSKU,
                 productType: req.body.productType,
                 productStatus: req.body.productStatus,
-                productImage: path != '' ? '/' + path : '',
+                productImage: "/uploads/products/1668511359046-product_hamburger_01.jpg",
             };
 
             productsService.createProduct(model, (error, results) => {

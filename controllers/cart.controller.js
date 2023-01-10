@@ -18,11 +18,6 @@ exports.create = (req, res, next) => {
 }
 
 exports.findAll = (req, res, next) => {
-    var model = {
-        userId: req.user.userId,
-        products: req.body.products
-    };
-
     cartService.getCart({ userId: req.user.userId }, (error, results) => {
         if (error) {
             return next(error);
@@ -35,11 +30,12 @@ exports.findAll = (req, res, next) => {
 }
 
 exports.delete = (req, res, next) => {
-    var model = {
+    const model = {
         userId: req.user.userId,
-        products: req.body.products,
+        productId: req.body.productId,
         qty: req.body.qty
-    };
+    }
+
 
     cartService.removeCartItem(model, (error, results) => {
         if (error) {

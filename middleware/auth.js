@@ -4,8 +4,8 @@ const { user } = require("../models/user.model");
 const TOKEN_KEY = "RANDOM_KEY";
 
 function authenticateToken(req, res, next) {
-    const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split(' ')[1]
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
 
     // if (token == null) return res.sendStatus(401);
 
@@ -15,8 +15,7 @@ function authenticateToken(req, res, next) {
 
 
     jwt.verify(token, TOKEN_KEY, (err, user) => {
-        console.log(err);
-        if (err) return res.status(403).send({ message: "Unauthorized" });
+        if (err) return res.status(401).send({ message: "Unauthorized" });
         req.user = user.data;
         next();
     });
@@ -24,7 +23,7 @@ function authenticateToken(req, res, next) {
 
 function generateAccessToken(userModel) {
     return jwt.sign({ data: userModel }, TOKEN_KEY, {
-        expiresIn: '1h'
+        expiresIn: '24h'
     });
 };
 

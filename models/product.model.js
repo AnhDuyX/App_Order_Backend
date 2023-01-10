@@ -47,6 +47,12 @@ const product = mongoose.model(
             default: "IN",
         },
 
+        createdAt: {
+            type: Date,
+            required: true,
+            default: Date.now,
+        },
+
         relatedProducts: [
             {
                 type: mongoose.Schema.Types.ObjectId,
@@ -60,7 +66,7 @@ const product = mongoose.model(
 
         {
             toJSON: {
-                Transform: function (doc, ret) {
+                transform: function (doc, ret) {
                     ret.productId = ret._id.toString();
                     delete ret._id;
                     delete ret.__v;
